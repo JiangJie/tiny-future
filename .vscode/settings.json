@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "deno.disablePaths": [
+        "./src",
+        "./eslint.config.mjs",
+        "./rollup.config.mjs"
+    ]
+}
