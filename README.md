@@ -7,9 +7,13 @@
 [![Build Status](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml/badge.svg)](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/JiangJie/tiny-future/graph/badge.svg)](https://codecov.io/gh/JiangJie/tiny-future)
 
+---
+
 `Future` uses less than 10 lines of code to change the usage of `Promise`.
 
 Allow `Promise` to call `resolve/reject` anywhere, just like `C#` `TaskCompletionSource`, without being restricted to the `executor` that creates `Promise`.
+
+---
 
 ## Installation
 
