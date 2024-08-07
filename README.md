@@ -17,39 +17,18 @@ Allow `Promise` to call `resolve/reject` anywhere, just like `C#` `TaskCompletio
 
 ## Installation
 
-via pnpm
-
-```
+```sh
+# via pnpm
 pnpm add tiny-future
-```
-
-or via yarn
-
-```
+# or via yarn
 yarn add tiny-future
-```
-
-or just from npm
-
-```
+# or just from npm
 npm install --save tiny-future
-```
-
-via JSR
-
-```
+# via JSR
 jsr add @happy-js/tiny-future
-```
-
-for deno
-
-```
+# for deno
 deno add @happy-js/tiny-future
-```
-
-for bun
-
-```
+# for bun
 bunx jsr add @happy-js/tiny-future
 ```
 
