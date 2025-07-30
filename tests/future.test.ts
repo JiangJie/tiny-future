@@ -42,6 +42,6 @@ Deno.test('Future', async (t) => {
     await doTest();
 
     // Disable `Promise.withResolvers`, then test again.
-    Promise.withResolvers = null;
+    delete Promise.withResolvers;
     await doTest();
 });
