@@ -13,6 +13,9 @@
 
 Allow `Promise` to call `resolve/reject` anywhere, just like `C#` `TaskCompletionSource`, without being restricted to the `executor` that creates `Promise`.
 
+> [!NOTE]
+> `Future` uses `Promise.withResolvers` to create `Promise`, if `Promise.withResolvers` is not available, `Future` will fall back to a regular `Promise`.
+
 ---
 
 ## Installation

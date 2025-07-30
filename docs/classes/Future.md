@@ -1,10 +1,12 @@
-[**tiny-future**](../README.md) • **Docs**
+[**tiny-future**](../README.md)
 
 ***
 
 [tiny-future](../README.md) / Future
 
 # Class: Future\<T\>
+
+Defined in: [src/future.ts:15](https://github.com/JiangJie/tiny-future/blob/6414fce6ede755349b5853aa14c6acdf88467617/src/future.ts#L15)
 
 A tiny way to make `Promise` more convenient to use without any dependencies.
 
@@ -28,20 +30,22 @@ return future.promise;
 
 ## Constructors
 
-### new Future()
+### Constructor
 
 ```ts
-new Future<T>(): Future<T>
+new Future<T>(): Future<T>;
 ```
+
+Defined in: [src/future.ts:31](https://github.com/JiangJie/tiny-future/blob/6414fce6ede755349b5853aa14c6acdf88467617/src/future.ts#L31)
 
 #### Returns
 
-[`Future`](Future.md)\<`T`\>
+`Future`\<`T`\>
 
 ## Properties
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| `promise` | `readonly` | `Promise`\<`T`\> | The Promise created by the Future. | [future.ts:31](https://github.com/JiangJie/tiny-future/blob/HEAD/src/future.ts#L31) |
-| `reject` | `readonly` | (`reason`?: `any`) => `void` | Reject the created Promise. | [future.ts:26](https://github.com/JiangJie/tiny-future/blob/HEAD/src/future.ts#L26) |
-| `resolve` | `readonly` | (`value`: `T` \| `PromiseLike`\<`T`\>) => `void` | Resolve the created Promise. | [future.ts:21](https://github.com/JiangJie/tiny-future/blob/HEAD/src/future.ts#L21) |
+| <a id="promise"></a> `promise` | `readonly` | `Promise`\<`T`\> | The Promise created by the Future. | [src/future.ts:29](https://github.com/JiangJie/tiny-future/blob/6414fce6ede755349b5853aa14c6acdf88467617/src/future.ts#L29) |
+| <a id="reject"></a> `reject` | `readonly` | (`reason?`) => `void` | Reject the created Promise. | [src/future.ts:24](https://github.com/JiangJie/tiny-future/blob/6414fce6ede755349b5853aa14c6acdf88467617/src/future.ts#L24) |
+| <a id="resolve"></a> `resolve` | `readonly` | (`value`) => `void` | Resolve the created Promise. | [src/future.ts:19](https://github.com/JiangJie/tiny-future/blob/6414fce6ede755349b5853aa14c6acdf88467617/src/future.ts#L19) |

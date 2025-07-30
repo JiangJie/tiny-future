@@ -1,4 +1,4 @@
-**tiny-future** • **Docs**
+**tiny-future**
 
 ***
 
