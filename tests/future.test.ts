@@ -1,38 +1,47 @@
 import { assert } from '@std/assert';
-import { Future } from "../src/future.ts";
+import { Future } from '../src/future.ts';
 
 Deno.test('Future', async (t) => {
-    await t.step('Future.promise is a Promise', () => {
-        const future = new Future<number>();
+    async function doTest() {
+        await t.step('Future.promise is a Promise', () => {
+            const future = new Future<number>();
 
-        assert(future.promise instanceof Promise);
-    });
-
-    await t.step('Resolve', async () => {
-        const future = new Future<number>();
-
-        const done = future.promise.then((value) => {
-            assert(value === 0);
+            assert(future.promise instanceof Promise);
         });
 
-        setTimeout(() => {
-            future.resolve(0);
-        }, 10);
+        await t.step('Resolve', async () => {
+            const future = new Future<number>();
 
-        await done;
-    });
+            const done = future.promise.then((value) => {
+                assert(value === 0);
+            });
 
-    await t.step('Reject', async () => {
-        const future = new Future<number>();
+            setTimeout(() => {
+                future.resolve(0);
+            }, 10);
 
-        const done = future.promise.catch((reason) => {
-            assert(reason === -1);
+            await done;
         });
 
-        setTimeout(() => {
-            future.reject(-1);
-        }, 10);
+        await t.step('Reject', async () => {
+            const future = new Future<number>();
 
-        await done;
-    });
+            const done = future.promise.catch((reason) => {
+                assert(reason === -1);
+            });
+
+            setTimeout(() => {
+                future.reject(-1);
+            }, 10);
+
+            await done;
+        });
+    }
+
+    // `Promise.withResolvers` is a function.
+    await doTest();
+
+    // Disable `Promise.withResolvers`, then test again.
+    Promise.withResolvers = null;
+    await doTest();
 });

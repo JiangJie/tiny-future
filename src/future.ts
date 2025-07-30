@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 /**
  * A tiny way to make `Promise` more convenient to use without any dependencies.
  *
@@ -18,18 +16,30 @@ export class Future<T> {
     /**
      * Resolve the created Promise.
      */
-    readonly resolve!: (value: T | PromiseLike<T>) => void;
+    readonly resolve!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[0];
 
     /**
      * Reject the created Promise.
      */
-    readonly reject!: (reason?: any) => void;
+    readonly reject!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[1];
 
     /**
      * The Promise created by the Future.
      */
-    readonly promise: Promise<T> = new Promise<T>((resolve, reject) => {
-        (this as any).resolve = resolve;
-        (this as any).reject = reject;
-    });
+    readonly promise: Promise<T>;
+
+    constructor() {
+        // If the environment supports `Promise.withResolvers`, just use it.
+        if (typeof Promise.withResolvers === 'function') {
+            const { promise, resolve, reject } = Promise.withResolvers<T>();
+            this.promise = promise;
+            this.resolve = resolve;
+            this.reject = reject;
+        } else {
+            this.promise = new Promise<T>((resolve, reject) => {
+                (this as { resolve: typeof resolve }).resolve = resolve;
+                (this as { reject: typeof reject }).reject = reject;
+            });
+        }
+    }
 }
