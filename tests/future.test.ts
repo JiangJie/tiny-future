@@ -1,5 +1,5 @@
 import { assert } from '@std/assert';
-import { Future } from '../src/future.ts';
+import { Future } from 'tiny-future';
 
 Deno.test('Future', async (t) => {
     async function doTest() {
@@ -42,6 +42,7 @@ Deno.test('Future', async (t) => {
     await doTest();
 
     // Disable `Promise.withResolvers`, then test again.
+    // @ts-expect-error: just for test
     delete Promise.withResolvers;
     await doTest();
 });
