@@ -1,6 +1,6 @@
 {
   "name": "tiny-future",
-  "description": "A tiny way to make `Promise` more convenient to use without any dependencies.",
+  "description": "A zero-dependency Future/Promise wrapper to resolve or reject a Promise outside its executor.",
   "author": "jiang115jie@gmail.com",
   "license": "MIT",
   "version": "1.1.0",
@@ -46,7 +46,12 @@
     "Future",
     "defer",
     "deferred",
-    "tiny"
+    "tiny",
+    "async",
+    "await",
+    "TaskCompletionSource",
+    "withResolvers",
+    "zero-dependency"
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.2",
