@@ -1,19 +1,19 @@
-import { assert } from '@std/assert';
-import { Future } from 'tiny-future';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { Future } from '../src/future.ts';
 
-Deno.test('Future', async (t) => {
-    async function doTest() {
-        await t.step('Future.promise is a Promise', () => {
+describe('Future', () => {
+    function runTests() {
+        it('Future.promise is a Promise', () => {
             const future = new Future<number>();
 
-            assert(future.promise instanceof Promise);
+            expect(future.promise).toBeInstanceOf(Promise);
         });
 
-        await t.step('Resolve', async () => {
+        it('Resolve', async () => {
             const future = new Future<number>();
 
             const done = future.promise.then((value) => {
-                assert(value === 0);
+                expect(value).toBe(0);
             });
 
             setTimeout(() => {
@@ -23,11 +23,11 @@ Deno.test('Future', async (t) => {
             await done;
         });
 
-        await t.step('Reject', async () => {
+        it('Reject', async () => {
             const future = new Future<number>();
 
             const done = future.promise.catch((reason) => {
-                assert(reason === -1);
+                expect(reason).toBe(-1);
             });
 
             setTimeout(() => {
@@ -38,11 +38,22 @@ Deno.test('Future', async (t) => {
         });
     }
 
-    // `Promise.withResolvers` is a function.
-    await doTest();
+    describe('with Promise.withResolvers', () => {
+        runTests();
+    });
 
-    // Disable `Promise.withResolvers`, then test again.
-    // @ts-expect-error: just for test
-    delete Promise.withResolvers;
-    await doTest();
+    describe('without Promise.withResolvers (fallback)', () => {
+        const originalWithResolvers = Promise.withResolvers;
+
+        beforeAll(() => {
+            // @ts-expect-error: just for test
+            delete Promise.withResolvers;
+        });
+
+        afterAll(() => {
+            Promise.withResolvers = originalWithResolvers;
+        });
+
+        runTests();
+    });
 });
