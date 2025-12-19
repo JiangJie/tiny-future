@@ -1,17 +1,17 @@
 {
-  "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+  "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src/future.ts"],
   "out": "docs",
-  "plugin": ["typedoc-plugin-markdown"],
   "readme": "none",
-  "entryFileName": "README",
-  "enumMembersFormat": "table",
-  "parametersFormat": "table",
-  "interfacePropertiesFormat": "table",
-  "classPropertiesFormat": "table",
-  "typeDeclarationFormat": "table",
-  "indexFormat": "table",
-  "useCodeBlocks": true,
-  "expandObjects": true,
-  "exclude": ["**/node_modules/**"]
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "categorizeByGroup": true,
+  "exclude": ["**/node_modules/**"],
+  "navigationLinks": {
+    "GitHub": "https://github.com/JiangJie/tiny-future",
+    "npm": "https://www.npmjs.com/package/tiny-future",
+    "JSR": "https://jsr.io/@happy-js/tiny-future"
+  }
 }
