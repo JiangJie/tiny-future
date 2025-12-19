@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-12-19
+
+### Changed
+
+- Change license from GPL-3.0 to MIT
+- Migrate build tooling from Rollup to Vite
+- Migrate test framework from Deno to Vitest
+- Remove `readonly` modifier from `Future<T>` properties to align with `PromiseWithResolvers<T>` interface
+- Enhance JSDoc documentation with `@typeParam`, `@param`, and `@example` sections
+- Rewrite README with clearer structure
+- Switch TypeDoc output from Markdown to HTML (hosted on GitHub Pages)
+
 ## [1.1.0] - 2025-07-31
 
 ### Changed
@@ -25,5 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for both CJS and ESM module formats
 - TypeScript type definitions
 
+[1.2.0]: https://github.com/JiangJie/tiny-future/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/JiangJie/tiny-future/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/JiangJie/tiny-future/releases/tag/v1.0.0
