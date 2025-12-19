@@ -2,7 +2,7 @@
   "name": "tiny-future",
   "description": "A tiny way to make `Promise` more convenient to use without any dependencies.",
   "author": "jiang115jie@gmail.com",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "version": "1.1.0",
   "type": "module",
   "source": "src/future.ts",
