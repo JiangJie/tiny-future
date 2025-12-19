@@ -35,7 +35,7 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: |
-          npm pkg set name="@jiangjie/happy-rusty"
+          npm pkg set name="@jiangjie/tiny-future"
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
