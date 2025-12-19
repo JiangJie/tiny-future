@@ -37,8 +37,8 @@ export class Future<T> {
             this.reject = reject;
         } else {
             this.promise = new Promise<T>((resolve, reject) => {
-                (this as { resolve: typeof resolve }).resolve = resolve;
-                (this as { reject: typeof reject }).reject = reject;
+                (this as { resolve: typeof resolve; }).resolve = resolve;
+                (this as { reject: typeof reject; }).reject = reject;
             });
         }
     }
