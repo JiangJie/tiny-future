@@ -1,4 +1,4 @@
-# Future
+# tiny-future
 
 [![NPM version](https://img.shields.io/npm/v/tiny-future.svg)](https://npmjs.org/package/tiny-future)
 [![NPM downloads](https://badgen.net/npm/dm/tiny-future)](https://npmjs.org/package/tiny-future)
@@ -7,45 +7,47 @@
 [![Build Status](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml/badge.svg)](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/JiangJie/tiny-future/graph/badge.svg)](https://codecov.io/gh/JiangJie/tiny-future)
 
----
+A zero-dependency Future/Promise wrapper to resolve or reject a Promise outside its executor.
 
-`Future` uses less than 10 lines of code to change the usage of `Promise`.
+Inspired by C# `TaskCompletionSource`.
 
-Allow `Promise` to call `resolve/reject` anywhere, just like `C#` `TaskCompletionSource`, without being restricted to the `executor` that creates `Promise`.
+## Features
 
-> [!NOTE]
-> `Future` uses `Promise.withResolvers` to create `Promise`, if `Promise.withResolvers` is not available, `Future` will fall back to a regular `Promise`.
-
----
+- Zero dependencies
+- TypeScript first with full type support
+- Works with `Promise.withResolvers` (ES2024) with automatic fallback
+- Supports ESM, CommonJS, and Deno/JSR
 
 ## Installation
 
 ```sh
-# via pnpm
+# npm
+npm install tiny-future
+
+# pnpm
 pnpm add tiny-future
-# or via yarn
+
+# yarn
 yarn add tiny-future
-# or just from npm
-npm install --save tiny-future
-# via JSR
-jsr add @happy-js/tiny-future
-# for deno
+
+# JSR (Deno)
 deno add @happy-js/tiny-future
-# for bun
-bunx jsr add @happy-js/tiny-future
+
+# JSR (other runtimes)
+npx jsr add @happy-js/tiny-future
 ```
 
-## Example
+## Usage
 
 ```ts
 import { Future } from 'tiny-future';
 
-function sleep(ms: number):Promise<number> {
+function sleep(ms: number): Promise<number> {
     const future = new Future<number>();
 
     setTimeout(() => {
-        // future.resolve/future.reject at anywhere
-        future.resolve(0);
+        // resolve/reject from anywhere, not just inside the executor
+        future.resolve(ms);
     }, ms);
 
     return future.promise;
@@ -54,21 +56,56 @@ function sleep(ms: number):Promise<number> {
 await sleep(1000);
 ```
 
-If you have used `C#` `TaskCompletionSource`, then you should be familiar with the usage of `Future`.
+### Comparison with standard Promise
 
-Compare to the usual way of creating `Promise`.
+With `Future`, you can resolve or reject from anywhere:
 
 ```ts
-function sleep(ms: number): Promise<number> {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            // resolve/reject must in the executor closure
-            resolve(ms);
-        }, ms);
-    });
-}
-
-await sleep(1000);
+// Using Future
+const future = new Future<string>();
+someAsyncOperation((result) => {
+    future.resolve(result);
+});
+return future.promise;
 ```
 
-## [Docs](docs/README.md)
+With standard `Promise`, resolve/reject must be inside the executor:
+
+```ts
+// Using Promise
+return new Promise((resolve) => {
+    someAsyncOperation((result) => {
+        resolve(result);
+    });
+});
+```
+
+### Error handling
+
+```ts
+const future = new Future<void>();
+
+future.promise.catch((err) => {
+    console.error('Error:', err.message);
+});
+
+future.reject(new Error('something went wrong'));
+```
+
+## API
+
+### `Future<T>`
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `promise` | `Promise<T>` | The underlying Promise instance |
+| `resolve` | `(value: T \| PromiseLike<T>) => void` | Resolves the Promise |
+| `reject` | `(reason?: unknown) => void` | Rejects the Promise |
+
+## Documentation
+
+[API Documentation](https://jiangjie.github.io/tiny-future/)
+
+## License
+
+MIT
