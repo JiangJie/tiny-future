@@ -1,11 +1,12 @@
 # tiny-future
 
+[![License](https://img.shields.io/npm/l/tiny-future.svg)](LICENSE)
+[![Build Status](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml/badge.svg)](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/JiangJie/tiny-future/graph/badge.svg)](https://codecov.io/gh/JiangJie/tiny-future)
 [![NPM version](https://img.shields.io/npm/v/tiny-future.svg)](https://npmjs.org/package/tiny-future)
 [![NPM downloads](https://badgen.net/npm/dm/tiny-future)](https://npmjs.org/package/tiny-future)
 [![JSR Version](https://jsr.io/badges/@happy-js/tiny-future)](https://jsr.io/@happy-js/tiny-future)
 [![JSR Score](https://jsr.io/badges/@happy-js/tiny-future/score)](https://jsr.io/@happy-js/tiny-future/score)
-[![Build Status](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml/badge.svg)](https://github.com/jiangjie/tiny-future/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/JiangJie/tiny-future/graph/badge.svg)](https://codecov.io/gh/JiangJie/tiny-future)
 
 A zero-dependency Future/Promise wrapper to resolve or reject a Promise outside its executor.
 
