@@ -26,7 +26,7 @@ The architecture is intentionally minimal: one source module (`src/future.ts`) a
 - **Package manager**: pnpm (required)
 - **Runtime**: Node.js
 - **Language**: TypeScript (strict mode, bundler resolution)
-- **Build**: Vite 8 + `vite-plugin-dts`
+- **Build**: Vite 8 + `unplugin-dts` (types bundled via `@microsoft/api-extractor`)
 - **Test**: Vitest 4 with v8 coverage
 - **Lint**: ESLint 10 + `typescript-eslint` (strict + stylistic) + `@stylistic/eslint-plugin`
 
